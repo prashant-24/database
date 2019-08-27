@@ -1,0 +1,115 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| academy            |
+| adventureworks     |
+| college            |
+| datatype           |
+| date               |
+| db                 |
+| institute          |
+| location           |
+| mydb               |
+| mysql              |
+| serviceprovider    |
+| test               |
++--------------------+
+13 rows in set (0.02 sec)
+
+mysql> use academy;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> use institute;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right synta
+x to use near '' at line 1
+mysql> use date;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_date |
++----------------+
+| datedatatypes  |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> create table spldatatypes(ID int auto_increment primary key,membership enum('silver','gold','platinum'),hobbiesset('swimming','cricke
+t','football','badminton'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right synta
+x to use near '('swimming','cricket','football','badminton'))' at line 1
+mysql> create table spldatatypes(ID int auto_increment primary key,membership enum('silver','gold','platinum'),hobbiesset('swimming','cricke
+t','football','badminton'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right synta
+x to use near '('swimming','cricket','football','badminton'))' at line 1
+mysql> create table spldatatypes(ID int auto_increment primary key,membership enum('silver','gold','platinum'),hobbiesset('swimming','cricke
+t','football','badminton'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right synta
+x to use near '('swimming','cricket','football','badminton'))' at line 1
+mysql> create table spldatatypes
+    -> (id int AUTO-INCREMENT PRIMARY KEY,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right synta
+x to use near 'AUTO-INCREMENT PRIMARY KEY,' at line 2
+mysql> CREATE TABLE SPLDATATYPES
+    -> (ID INT AUTO_INCREMENT PRIMARY KEY,
+    -> DAYS ENUM('SUN','MON','TUE','WED','THU','FRI','SAT'),
+    -> HOBBIES SET('CHESS','TT','CRICKET')
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DESCRIBE SPLDATATYPES;
++---------+-------------------------------------------------+------+-----+---------+----------------+
+| Field   | Type                                            | Null | Key | Default | Extra          |
++---------+-------------------------------------------------+------+-----+---------+----------------+
+| ID      | int(11)                                         | NO   | PRI | NULL    | auto_increment |
+| DAYS    | enum('SUN','MON','TUE','WED','THU','FRI','SAT') | YES  |     | NULL    |                |
+| HOBBIES | set('CHESS','TT','CRICKET')                     | YES  |     | NULL    |                |
++---------+-------------------------------------------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> INSERT INTO SPLDATATYPES
+    -> (DAYS,HOBBIES)
+    -> VALUES
+    -> ('SUN','CHESS');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM SPLDATATYPES;
++----+------+---------+
+| ID | DAYS | HOBBIES |
++----+------+---------+
+|  1 | SUN  | CHESS   |
++----+------+---------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO SPLDATATYPES
+    -> (DAYS,HOBBIES)
+    -> VALUES
+    -> ('MON','CRICKET,TT');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM SPLDATATYPES;
++----+------+------------+
+| ID | DAYS | HOBBIES    |
++----+------+------------+
+|  1 | SUN  | CHESS      |
+|  2 | MON  | TT,CRICKET |
++----+------+------------+
+2 rows in set (0.00 sec)
+
+mysql>

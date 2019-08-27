@@ -1,0 +1,147 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| adventureworks     |
+| college            |
+| db                 |
+| getveg             |
+| institute          |
+| location           |
+| mydb               |
+| mysql              |
+| serviceprovider    |
+| test               |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> create database ACADEMY;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| academy            |
+| adventureworks     |
+| college            |
+| db                 |
+| getveg             |
+| institute          |
+| location           |
+| mydb               |
+| mysql              |
+| serviceprovider    |
+| test               |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> USE ACADEMY
+Database changed
+mysql> USE ACADEMY;
+Database changed
+mysql> CREATE TABLE STUDENT(StudentId int ,Name varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO STUDENT VALUES(1,'shubh');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO STUDENT VALUES(2,'PRASHANT');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO STUDENT VALUES(3,'SHASHANK');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO STUDENT VALUES(4,'MANOJ');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO STUDENT VALUES(5,'AADARSH');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM STUDENT;
++-----------+----------+
+| StudentId | Name     |
++-----------+----------+
+|         1 | shubh    |
+|         2 | PRASHANT |
+|         3 | SHASHANK |
+|         4 | MANOJ    |
+|         5 | AADARSH  |
++-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO STUDENT VALUES(5,'RAM');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM STUDENT;
++-----------+----------+
+| StudentId | Name     |
++-----------+----------+
+|         1 | shubh    |
+|         2 | PRASHANT |
+|         3 | SHASHANK |
+|         4 | MANOJ    |
+|         5 | AADARSH  |
+|         5 | RAM      |
++-----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> DELETE FROM STUDENT
+    -> WHERE NAME='aadarsh';
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM STUDENT;
++-----------+----------+
+| StudentId | Name     |
++-----------+----------+
+|         1 | shubh    |
+|         2 | PRASHANT |
+|         3 | SHASHANK |
+|         4 | MANOJ    |
+|         5 | RAM      |
++-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE STUDENT SET NAME ='RAMESH' WHERE STUDENTID=5;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM STUDENT;
++-----------+----------+
+| StudentId | Name     |
++-----------+----------+
+|         1 | shubh    |
+|         2 | PRASHANT |
+|         3 | SHASHANK |
+|         4 | MANOJ    |
+|         5 | RAMESH   |
++-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> TRUNCATE STUDENT;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DESCRIBE STUDENT;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| StudentId | int(11)     | YES  |     | NULL    |       |
+| Name      | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+mysql> DROP TABLE STUDENT;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESCRIBE STUDENT;
+ERROR 1146 (42S02): Table 'academy.student' doesn't exist
+mysql>

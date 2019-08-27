@@ -1,0 +1,300 @@
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | NO   | PRI | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(1,'prashant',0000000000);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student;
++----+----------+----------+
+| id | name     | mobileno |
++----+----------+----------+
+|  1 | prashant |        0 |
++----+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> alter table student modify column mobileno char(10);
+Query OK, 1 row affected (0.11 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | NO   | PRI | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| mobileno | char(10)    | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select* from student;
++----+----------+----------+
+| id | name     | mobileno |
++----+----------+----------+
+|  1 | prashant | 0        |
++----+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> delete mobileno from student where id=1;
+ERROR 1109 (42S02): Unknown table 'mobileno' in MULTI DELETE
+mysql> insert into student values(1,'prashant',1234567891);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+mysql> alter table student modify column id int;
+Query OK, 1 row affected (0.11 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select* from student;
++----+----------+----------+
+| id | name     | mobileno |
++----+----------+----------+
+|  1 | prashant | 0        |
++----+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> delete mobileno from student where id=1;
+ERROR 1109 (42S02): Unknown table 'mobileno' in MULTI DELETE
+mysql> delete * from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right synta
+x to use near '* from student' at line 1
+mysql> truncate student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | NO   | PRI | 0       |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| mobileno | char(10)    | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(1,'prashant',1234567891);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select* from student;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  1 | prashant | 1234567891 |
++----+----------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values(2,'amey',4455662233);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(3,'aakash',4562318933);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student values(4,'shashank',5896326541);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student values(5,'manoj',5236412365);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select* from student;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  1 | prashant | 1234567891 |
+|  2 | amey     | 4455662233 |
+|  3 | aakash   | 4562318933 |
+|  4 | shashank | 5896326541 |
+|  5 | manoj    | 5236412365 |
++----+----------+------------+
+5 rows in set (0.01 sec)
+
+mysql> select* from student order by name;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  3 | aakash   | 4562318933 |
+|  2 | amey     | 4455662233 |
+|  5 | manoj    | 5236412365 |
+|  1 | prashant | 1234567891 |
+|  4 | shashank | 5896326541 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by name asc;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  3 | aakash   | 4562318933 |
+|  2 | amey     | 4455662233 |
+|  5 | manoj    | 5236412365 |
+|  1 | prashant | 1234567891 |
+|  4 | shashank | 5896326541 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by name desc;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  4 | shashank | 5896326541 |
+|  1 | prashant | 1234567891 |
+|  5 | manoj    | 5236412365 |
+|  2 | amey     | 4455662233 |
+|  3 | aakash   | 4562318933 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by id desc;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  5 | manoj    | 5236412365 |
+|  4 | shashank | 5896326541 |
+|  3 | aakash   | 4562318933 |
+|  2 | amey     | 4455662233 |
+|  1 | prashant | 1234567891 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by id;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  1 | prashant | 1234567891 |
+|  2 | amey     | 4455662233 |
+|  3 | aakash   | 4562318933 |
+|  4 | shashank | 5896326541 |
+|  5 | manoj    | 5236412365 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by id asc;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  1 | prashant | 1234567891 |
+|  2 | amey     | 4455662233 |
+|  3 | aakash   | 4562318933 |
+|  4 | shashank | 5896326541 |
+|  5 | manoj    | 5236412365 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by id,name;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  1 | prashant | 1234567891 |
+|  2 | amey     | 4455662233 |
+|  3 | aakash   | 4562318933 |
+|  4 | shashank | 5896326541 |
+|  5 | manoj    | 5236412365 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by id desc,name;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  5 | manoj    | 5236412365 |
+|  4 | shashank | 5896326541 |
+|  3 | aakash   | 4562318933 |
+|  2 | amey     | 4455662233 |
+|  1 | prashant | 1234567891 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by name desc,id;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  4 | shashank | 5896326541 |
+|  1 | prashant | 1234567891 |
+|  5 | manoj    | 5236412365 |
+|  2 | amey     | 4455662233 |
+|  3 | aakash   | 4562318933 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select* from student order by name desc,id desc;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  4 | shashank | 5896326541 |
+|  1 | prashant | 1234567891 |
+|  5 | manoj    | 5236412365 |
+|  2 | amey     | 4455662233 |
+|  3 | aakash   | 4562318933 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select id,name from student order by 2;
++----+----------+
+| id | name     |
++----+----------+
+|  3 | aakash   |
+|  2 | amey     |
+|  5 | manoj    |
+|  1 | prashant |
+|  4 | shashank |
++----+----------+
+5 rows in set (0.00 sec)
+
+mysql> select id,name,mobileno from student order by 2;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  3 | aakash   | 4562318933 |
+|  2 | amey     | 4455662233 |
+|  5 | manoj    | 5236412365 |
+|  1 | prashant | 1234567891 |
+|  4 | shashank | 5896326541 |
++----+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select id,name,mobileno from student order by 2 limit 2;
++----+--------+------------+
+| id | name   | mobileno   |
++----+--------+------------+
+|  3 | aakash | 4562318933 |
+|  2 | amey   | 4455662233 |
++----+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select id,name,mobileno from student order by 2 limit 3;
++----+--------+------------+
+| id | name   | mobileno   |
++----+--------+------------+
+|  3 | aakash | 4562318933 |
+|  2 | amey   | 4455662233 |
+|  5 | manoj  | 5236412365 |
++----+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select id,name,mobileno from student order by 2 limit 1;
++----+--------+------------+
+| id | name   | mobileno   |
++----+--------+------------+
+|  3 | aakash | 4562318933 |
++----+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select id,name,mobileno from student order by 2 limit 2,2;
++----+----------+------------+
+| id | name     | mobileno   |
++----+----------+------------+
+|  5 | manoj    | 5236412365 |
+|  1 | prashant | 1234567891 |
++----+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select id,name,mobileno from student order by 2 limit 1,2;
++----+-------+------------+
+| id | name  | mobileno   |
++----+-------+------------+
+|  2 | amey  | 4455662233 |
+|  5 | manoj | 5236412365 |
++----+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql>
